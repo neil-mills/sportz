@@ -1,4 +1,5 @@
 import axios from 'axios'
+import slug from 'slug'
 const apiKey='1ff3bef3bffe4304ab651b9beb389276';
 
 const baseUrl='https://skysportsapi.herokuapp.com/sky'
@@ -18,6 +19,11 @@ export function fetchArticles(sport) {
   })
 }
 */
+
+export function fetchArticle(articles, titleSlug) {
+   const filtered = articles.filter((article) => slug(article.title).toLowerCase() === titleSlug)
+   return filtered[0]
+}
 
 export function fetchLatest() {
   const uri = `${baseUrl}/getlatest/v1.0/`

@@ -10,10 +10,8 @@ class ArticleItem extends Component {
   }
 
   handleClick(e) {
-    console.log(this.props.article.title)
     e.preventDefault()
-    console.log('click')
-   this.props.history.push(`/article/${slug(this.props.article.title).toLowerCase()}`)
+    this.props.history.push(`/article/${slug(this.props.article.category).toLowerCase()}/${slug(this.props.article.title).toLowerCase()}`)
   }
 
   render() {

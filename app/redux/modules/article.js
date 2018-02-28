@@ -29,7 +29,6 @@ export function fetchAndHandleArticle(slug='',sport='football'){
     dispatch(fetchingArticle())
     fetchArticles(sport)
     .then((data) => {
-      console.log('data',data,'slug',slug)
       const article = fetchArticle(data, slug)
       dispatch(fetchingArticleSuccess(article))
     })

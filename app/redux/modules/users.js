@@ -1,8 +1,12 @@
+import { formatUserData } from 'helpers/utils'
+import { auth, saveUser } from 'helpers/auth'
+
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
 const FETCHING_USER = 'FETCHING_USER'
 const FETCHING_USER_FAILURE = 'FETCHING_USER_FAILURE'
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS'
+const REMOVE_FETCHING_USER = 'REMOVE_FETCHING_USER'
 
 export function authUser(uid) {
   return {
@@ -36,6 +40,28 @@ export function fetchingUserSuccess(uid, user, timestamp) {
     uid,
     user,
     timestamp
+  }
+}
+
+export function removeFetchingUser() {
+  return {
+    type: REMOVE_FETCHING_USER
+  }
+}
+
+export function fetchAndHandleAuthedUser() {
+  return function (dispatch) {
+    dispatch(fetchingUser())
+    return auth().then(({user, credentials}) => {
+      const userData = user.providerData[0]
+      const userInfo = formatUserInfo(userData.displayName, userData.photoURL, userData.uid)
+      console.log('user', user)
+      return dispatch(fetchingUserSuccess(user.uid, userInfo, Date.now()))
+     // dispatch(authUser(user.uid))
+    })
+    .then(({user}) => saveUser(user))
+    .then((user) => dispatch(authUser(user.uid)))
+    .catch((error) => dispatch(fetchingUserFailure(error)))
   }
 }
 
@@ -107,6 +133,11 @@ export default function users(state = initialState, action) {
         isFetching: false,
         error: '',
         [action.uid]: user(state[action.uid], action)
+      }
+    case REMOVE_FETCHING_USER:
+      return {
+        ...state,
+        isFetching: false
       }
     default:
       return state

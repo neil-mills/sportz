@@ -2,7 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { HomeContainer, SportContainer, ArticleContainer } from 'containers'
+import { MainContainer, HomeContainer, SportContainer, ArticleContainer, SportsContainer, MySportsContainer } from 'containers'
+import { Header, Footer } from 'components'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import * as reducers from 'redux/modules'
@@ -16,13 +17,15 @@ const store = createStore(combineReducers(reducers), compose(
 const Root = () => (
     <Provider store={store}>
         <Router>
-            <div className="container">
+            <MainContainer>
                 <Switch>
                     <Route exact path="/" component={HomeContainer} />
                     <Route path="/sport/:sportId" component={SportContainer} />
                     <Route path="/article/:sportId/:articleId" component={ArticleContainer} />
+                    <Route path="/sports" component={SportsContainer} />
+                    <Route path="/my-sports" component={MySportsContainer} />
                 </Switch>
-            </div>
+            </MainContainer>
         </Router>
     </Provider>
 )

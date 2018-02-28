@@ -1,2 +1,6 @@
+export Header from './Header/Header'
+export Footer from './Footer/Footer'
 export ArticleItem from './ArticleItem/ArticleItem'
 export Feed from './Feed/Feed'
+export SportsList from './SportsList/SportsList'
+export FacebookLogin from './FacebookLogin/FacebookLogin'

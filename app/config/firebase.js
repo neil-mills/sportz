@@ -1,11 +1,11 @@
 import firebase from 'firebase'
 const config = {
-    apiKey: "AIzaSyBIDh6iOedSzluEA5Co5Fj0DfnmbZfJieQ",
-    authDomain: "duckr-17474.firebaseapp.com",
-    databaseURL: "https://duckr-17474.firebaseio.com",
-    projectId: "duckr-17474",
-    storageBucket: "duckr-17474.appspot.com",
-    messagingSenderId: "748697162699"
+  apiKey: "AIzaSyAhauG8QmBdgQDg8K4Oi7-1AYdPNMKpUEw",
+  authDomain: "sportz-932cd.firebaseapp.com",
+  databaseURL: "https://sportz-932cd.firebaseio.com",
+  projectId: "sportz-932cd",
+  storageBucket: "",
+  messagingSenderId: "146515996646"
 };
 firebase.initializeApp(config)
 

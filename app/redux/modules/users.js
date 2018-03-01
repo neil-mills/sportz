@@ -1,5 +1,5 @@
 import { formatUserData } from 'helpers/utils'
-import { auth, saveUser } from 'helpers/auth'
+import auth, { saveUser, logout } from 'helpers/auth'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -62,6 +62,13 @@ export function fetchAndHandleAuthedUser() {
     .then(({user}) => saveUser(user))
     .then((user) => dispatch(authUser(user.uid)))
     .catch((error) => dispatch(fetchingUserFailure(error)))
+  }
+}
+
+export function logoutAndUnauth () {
+  return function(dispatch) {
+    logout()
+    dispatch(unautUser())
   }
 }
 

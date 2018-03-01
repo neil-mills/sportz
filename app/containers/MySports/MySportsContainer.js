@@ -21,16 +21,24 @@ class MySportsContainer extends Component {
   }
 
   render() {
-    return (
-      <div>My Sports</div>
-    )
+    return this.props.isAuthed
+    ? <div>User selected teams here </div>
+    : <FacebookLogin handleAuth={this.handleAuth} />
   }
 }
 
-const mapStateToProps = ({users}) => { //users module
+MySportsContainer.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+  isAuthed: PropTypes.bool.isRequired,
+  fetchAndHandleAuthedUser: PropTypes.func.isRequired
+}
+
+const mapStateToProps = ({users}) => { //destructure the users module from state
   return {
     isFetching: users.isFetching,
-    error: users.error
+    error: users.error,
+    isAuthed: users.isAuthed
   }
 }
 

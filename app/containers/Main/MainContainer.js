@@ -6,21 +6,24 @@ import { bindActionCreators } from 'redux'
 import * as userActionCreators from 'redux/modules/users'
 import { firebaseAuth } from 'config/firebase'
 import { formatUserInfo } from 'helpers/utils'
+import { withRouter } from 'react-router-dom'
 
 class MainContainer extends Component {
+
   componentDidMount() {
     //check if user logged in here...
     firebaseAuth().onAuthStateChanged((user) => {
-      if (user) { //if user is logged in, change auth status in state
+      if (user) { 
         const userData = user.providerData[0]
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
-        this.props.authUser(user.uid) //dispatch the action creator
+        this.props.authUser(user.uid) 
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
       } else {
-        this.props.removeFetchingUser() // just end the fetching user state
+        this.props.removeFetchingUser() 
       }
     })
   }
+
 
   render() {
     
@@ -30,7 +33,7 @@ class MainContainer extends Component {
         <div className="inner-container">
         {this.props.children}
         </div>
-        <Footer/>
+        <Footer isAuthed={this.props.isAuthed} />
       </div>
     )
   }
@@ -45,7 +48,7 @@ MainContainer.propTypes = {
  // removeFetchingUser: PropTypes.func.isRequired
 }
 
-export default connect(
+export default withRouter(connect(
   ({users}) => ({ isAuthed: users.isAuthed, isFetching: users.isFetching }), //users module
   (dispatch) => bindActionCreators(userActionCreators, dispatch)
-)(MainContainer)
+)(MainContainer))

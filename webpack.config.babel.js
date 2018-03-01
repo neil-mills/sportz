@@ -56,8 +56,16 @@ const config = {
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true
+  devServer:{
+    historyApiFallback: true,
+    proxy: {
+      "http://localhost:8080/api": {
+      target: 'https://skysportsapi.herokuapp.com/sky',
+      pathRewrite: { '^/api': '' },
+      changeOrigin: true,
+      secure: false
+      }
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -91,6 +99,3 @@ if(process.env.NODE_ENV === 'production') {
 
 
 module.exports = config;
-
-
-

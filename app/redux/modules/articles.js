@@ -33,7 +33,6 @@ export function fetchAndFormatArticles(sport='football') {
     fetchArticles(sport)
     .then((articles) => {
       const feed = formatArticles(articles)
-      console.log(feed)
       dispatch(fetchingArticlesSuccess(feed, Date.now()))
     })
     .catch((error) => dispatch(fetchingArticlesFailure(error)))

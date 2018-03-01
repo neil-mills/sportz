@@ -6,7 +6,7 @@ const FacebookLogin = (props) => {
     <div className="login">
       <button
         className="login__button"
-        onClick={this.props.handleAuth}
+        onClick={props.handleAuth}
       >
         Login with Facebook
       </button>

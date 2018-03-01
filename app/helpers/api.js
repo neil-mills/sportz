@@ -2,9 +2,8 @@ import axios from 'axios'
 import slug from 'slug'
 const apiKey='1ff3bef3bffe4304ab651b9beb389276';
 
-const baseUrl='https://skysportsapi.herokuapp.com/sky'
+const baseUrl='http://localhost:8080/api'
 const sports=['football','cricket','golf','tennis','rugby-league','rugby-union','boxing','horse-racing']
-const promises = sports.map((sport) => fetchArticles(sport))
 /*
 export function fetchArticles(sport) {
   //const uri = `https://newsapi.org/v2/top-headlines?sources=talksport&apiKey=${apiKey}`
@@ -20,6 +19,12 @@ export function fetchArticles(sport) {
 }
 */
 
+export function formatUserData() {
+  return {
+
+  }
+}
+
 export function fetchArticle(articles, titleSlug) {
    const filtered = articles.filter((article) => slug(article.title).toLowerCase() === titleSlug)
    return filtered[0]
@@ -32,9 +37,9 @@ export function fetchLatest() {
 
 export function fetchArticles(sport) {
   const uri = `${baseUrl}/getnews/${sport}/v1.0/`
-  return axios
-    .get(encodeURI(uri))
-    .then((response) => response.data)
+  return axios(encodeURI(uri),{
+    method: 'GET'
+  }).then((response) => (response.data))
 }
 
 export function getArticleCategory(url) {
@@ -60,4 +65,8 @@ export function formatArticles(articles) {
     })
   })
   return formatted
+}
+
+export function getSports() {
+
 }

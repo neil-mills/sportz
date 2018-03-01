@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { withRouter } from 'react-router-dom'
 import slug from 'slug'
 import PropTypes from 'prop-types'
+import { logout } from 'helpers/auth'
 
 class Footer extends Component {
   constructor(props) {
@@ -31,7 +32,12 @@ class Footer extends Component {
             </li>
             <li className="footer-nav-item">
               <a href="/my-sports" className="footer-nav-link" onClick={this.handleClick}>
-                <span className="footer-nav-link__text">Login</span>
+                <span className="footer-nav-link__text">
+                {
+                  this.props.isAuthed
+                  ? 'My Sports' : 'Login'
+                }
+                </span>
               </a>
             </li>
           </ul>
@@ -39,6 +45,10 @@ class Footer extends Component {
       </footer>
     )
   }
+}
+
+Footer.propTypes = {
+  isAuthed: PropTypes.bool.isRequired
 }
 
 export default withRouter(Footer)

@@ -43,6 +43,7 @@ sftp-config.json
 ##Server log files
 *error_log
 
+dist/*
 ##don't ignore by default which allows us to create empty directory structures
 #never ignore a .gitignore file, even in ignored directories
 !.gitignore

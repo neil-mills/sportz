@@ -1,5 +1,5 @@
 {
-  "name": "capgemini-tech-test",
+  "name": "sportz",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -25,9 +25,10 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "cors": "^2.8.4",
     "cross-env": "^5.0.1",
     "firebase": "^4.10.0",
+    "fs": "0.0.1-security",
+    "morgan": "^1.6.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-modal": "^3.3.1",
@@ -36,7 +37,8 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "slug": "^0.9.1"
+    "slug": "^0.9.1",
+    "webpack-browser-plugin": "^1.0.20"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
@@ -49,6 +51,8 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^2.0.1",
     "copy-webpack-plugin": "^4.4.1",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.0",

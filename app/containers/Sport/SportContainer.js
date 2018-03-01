@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Feed } from 'components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -8,6 +9,7 @@ class SportContainer extends Component {
   componentDidMount() {
     const sport = this.props.match.params.sportId
     this.props.fetchAndFormatArticles(sport)
+    //console.log(this.context.store.getState())
   }
   render() {
     return (
@@ -18,6 +20,10 @@ class SportContainer extends Component {
       />
     )
   }
+}
+
+SportContainer.contextTypes = {
+  store: PropTypes.object.isRequired
 }
 
 function mapStateToProps({articles}) {

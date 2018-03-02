@@ -30,9 +30,10 @@
       title
     }
   }
-  usersSports: {
+  usersTeams: {
     lastUpdated,
     [uid]: {
-      sportIds: [sportId, sportId, sportId]
+      lastUpdated,
+      teams: [team, team, team]
     }
   },

@@ -25,6 +25,7 @@ function fetchingArticleSuccess(article) {
 }
 
 export function fetchAndHandleArticle(slug='',sport='football'){
+  console.log('slug',slug,'sport',sport)
   return function(dispatch) {
     dispatch(fetchingArticle())
     fetchArticles(sport)

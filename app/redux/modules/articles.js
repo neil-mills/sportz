@@ -1,4 +1,4 @@
-import { fetchAllSportsArticles, fetchArticles, formatArticles } from 'helpers/api'
+import { fetchAllSportsArticles, fetchArticles, formatArticles, fetchAllUserTeamArticles } from 'helpers/api'
 
 const FETCHING_ARTICLES = 'FETCHING_ARTICLES'
 const FETCHING_ARTICLES_FAILURE = 'FETCHING_ARTICLES_FAILURE'
@@ -37,6 +37,19 @@ export function fetchAndFormatArticles(sport='football') {
     })
     .catch((error) => dispatch(fetchingArticlesFailure(error)))
   }
+}
+
+export function fetchAndFormatTeamArticles() {
+    return function (dispatch, getState) {
+      const userTeams = getState().userTeams.teams
+      dispatch(fetchingArticles())
+      fetchAllUserTeamArticles(userTeams)
+      .then((articles) => {
+       const feed = formatArticles(articles)
+        dispatch(fetchingArticlesSuccess(feed, Date.now()))
+      })
+      .catch((error) => dispatch(fetchingArticlesFailure(error)))
+    }
 }
 
 const initialState = {

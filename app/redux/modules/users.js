@@ -1,5 +1,7 @@
-import { formatUserData } from 'helpers/utils'
-import auth, { saveUser, logout } from 'helpers/auth'
+import { formatUserInfo } from 'helpers/utils'
+import auth, { logout } from 'helpers/auth'
+import { saveUser, getUserTeams } from 'helpers/api'
+import userTeams, { addAllUserTeams } from './userTeams'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -54,12 +56,16 @@ export function fetchAndHandleAuthedUser() {
     dispatch(fetchingUser())
     return auth().then(({user, credentials}) => {
       const userData = user.providerData[0]
+      console.log('userdata',userData)
       const userInfo = formatUserInfo(userData.displayName, userData.photoURL, userData.uid)
-      console.log('user', user)
+      
+      saveUser(userInfo)
       return dispatch(fetchingUserSuccess(user.uid, userInfo, Date.now()))
      // dispatch(authUser(user.uid))
+     
     })
-    .then(({user}) => saveUser(user))
+    
+    .then(({user}) => getUserTeams(user.uid).then((teams) => dispatch(addAllUserTeams(user.uid, teams))))
     .then((user) => dispatch(authUser(user.uid)))
     .catch((error) => dispatch(fetchingUserFailure(error)))
   }
@@ -68,7 +74,7 @@ export function fetchAndHandleAuthedUser() {
 export function logoutAndUnauth () {
   return function(dispatch) {
     logout()
-    dispatch(unautUser())
+    dispatch(unauthUser())
   }
 }
 

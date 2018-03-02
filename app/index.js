@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
-import { MainContainer, HomeContainer, SportContainer, ArticleContainer, SportsContainer, MySportsContainer } from 'containers'
+import { MainContainer, HomeContainer, SportContainer, ArticleContainer, SportsContainer, MySportsContainer, AccountContainer } from 'containers'
 import { Header, Footer } from 'components'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -24,6 +24,7 @@ const Root = () => (
                     <Route path="/article/:sportId/:articleId" component={ArticleContainer} />
                     <Route path="/sports" component={SportsContainer} />
                     <Route path="/my-sports" component={MySportsContainer} />
+                    <Route path="/account" component={AccountContainer} />
                 </Switch>
             </MainContainer>
         </Router>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import slug from 'slug'
 const apiKey='1ff3bef3bffe4304ab651b9beb389276';
-
+import { ref, firebaseAuth } from 'config/firebase'
 const baseUrl='http://localhost:8080/api'
 const sports=['football','cricket','golf','tennis','rugby-league','rugby-union','boxing','horse-racing']
 /*
@@ -18,15 +18,16 @@ export function fetchArticles(sport) {
   })
 }
 */
-
-export function formatUserData() {
-  return {
-
-  }
+export function saveUser(user) {
+  console.log('user',user)
+  return ref.child(`users/${user.uid}`)
+  .set(user)
+  .then(() => user)
 }
 
 export function fetchArticle(articles, titleSlug) {
-   const filtered = articles.filter((article) => slug(article.title).toLowerCase() === titleSlug)
+   const filtered = articles.filter((article) => {
+     return slug(article.title).toLowerCase() === titleSlug})
    return filtered[0]
 }
 
@@ -40,6 +41,31 @@ export function fetchArticles(sport) {
   return axios(encodeURI(uri),{
     method: 'GET'
   }).then((response) => (response.data))
+}
+
+export function fetchTeamArticles(team) {
+  const teamSlug = slug(team).toLowerCase()
+  const uri = `${baseUrl}/football/getteamnews/${teamSlug}/v1.0/`
+  console.log(uri)
+  return axios(encodeURI(uri),{
+    method: 'GET'
+  }).then((response) => (response.data))
+}
+
+export function fetchAllUserTeamArticles(teams) {
+  const promises = teams.map((team) => (fetchTeamArticles(team)) )
+  return axios.all(promises)
+    .then((response) => {
+      let teamArticles = [];
+      response.map((articles) => {
+        articles.map((article) => {
+          teamArticles = [...teamArticles, article]
+        })
+       
+      })
+      console.log('ALL TEAM ARTICLES', teamArticles)
+      return teamArticles
+    })
 }
 
 export function getArticleCategory(url) {
@@ -67,6 +93,31 @@ export function formatArticles(articles) {
   return formatted
 }
 
-export function getSports() {
+export function getUserTeams(uid) {
+  console.log('get user teams=', uid)
+  return ref.child(`/userTeams/${uid}/teams`).once('value')
+  .then((snapshot) => {
+    console.log(snapshot)
+    return snapshot.val()
+  })
+}
 
+export function updateUserTeams(uid, teams) {
+  //firebase.database().ref(`/userTeams/${uid}`).once('value')
+    return ref.child(`userTeams/${uid}/teams`)
+    .set(teams)
+    return teams
+}
+
+export function saveToUserTeams(uid, teams) {
+  //firebase.database().ref(`/userTeams/${uid}`).once('value')
+    return ref.child(`userTeams/${uid}/teams`)
+    .set(teams)
+    return teams
+}
+
+export function removeFromUserTeams(uid, teams) {
+  return ref.child(`userTeams/${uid}/teams`)
+  .set(teams)
+  return teams
 }

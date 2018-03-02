@@ -15,16 +15,22 @@ class MySportsContainer extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    if(this.props.userTeams.length) {
+      this.props.fetchAndFormatTeamArticles()
+    }
+  }
+
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.userTeams.length > 0 && this.props.userTeams.length == 0) {
       this.props.fetchAndFormatTeamArticles()
     }
-
   }
   
   render() {
     return (
     <div>
+      <h1>My Sports</h1>
       { this.props.isAuthed === false &&
       <div>
         <p>Please login to personalise your my sports page</p>

@@ -1,4 +1,4 @@
-import { fetchArticles, fetchArticle, formatArticles } from 'helpers/api'
+import { fetchArticles, fetchArticle, fetchTeamArticles, formatArticles } from 'helpers/api'
 
 const FETCHING_ARTICLE = 'FETCHING_ARTICLE'
 const FETCHING_ARTICLE_FAILURE = 'FETCHING_ARTICLE_FAILURE'
@@ -24,15 +24,22 @@ function fetchingArticleSuccess(article) {
   }
 }
 
-export function fetchAndHandleArticle(slug='',sport='football'){
-  console.log('slug',slug,'sport',sport)
+export function fetchAndHandleArticle(slug='',sport='football', team=null){
   return function(dispatch) {
     dispatch(fetchingArticle())
-    fetchArticles(sport)
-    .then((data) => {
-      const article = fetchArticle(data, slug)
-      dispatch(fetchingArticleSuccess(article))
-    })
+    if(team === null) {
+      fetchArticles(sport)
+      .then((data) => {
+        const article = fetchArticle(data, slug)
+        dispatch(fetchingArticleSuccess(article))
+      })
+    } else {
+      fetchTeamArticles(team)
+      .then((data) => {
+       const article = fetchArticle(data, slug)
+        dispatch(fetchingArticleSuccess(article))
+      })
+    }
   }
 }
 
@@ -47,7 +54,8 @@ export default function article(state = initialState, action) {
     case FETCHING_ARTICLE:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        info: {}
       }
     case FETCHING_ARTICLE_FAILURE:
       return {

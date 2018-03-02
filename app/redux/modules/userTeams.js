@@ -45,7 +45,6 @@ export function removeUserTeam(uid, teams) {
 }
 
 export function addAllUserTeams(teams) {
-  console.log('add all user teams dispatched', teams)
   return {
     type: ADD_ALL_USER_TEAMS,
     teams

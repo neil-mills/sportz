@@ -12,12 +12,17 @@ class SportContainer extends Component {
     //console.log(this.context.store.getState())
   }
   render() {
+    const sport = this.props.match.params.sportId
     return (
-      <Feed
+      <div>
+        <h1>{sport}</h1>
+        <Feed
         isFetching={this.props.isFetching}
         feed={this.props.feed}  
         error={this.props.error}
       />
+      </div>
+      
     )
   }
 }

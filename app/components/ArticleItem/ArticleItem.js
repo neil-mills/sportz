@@ -9,9 +9,11 @@ class ArticleItem extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(e) {
+  handleClick(e, team) {
+    e.stopPropagation()
     e.preventDefault()
-    this.props.history.push(`/article/${slug(this.props.article.category).toLowerCase()}/${slug(this.props.article.title).toLowerCase()}`)
+    const teamSlug = team !== null ? `/${slug(team).toLowerCase()}` : ''
+    this.props.history.push(`/article/${slug(this.props.article.category).toLowerCase()}${teamSlug}/${slug(this.props.article.title).toLowerCase()}`)
   }
 
   render() {
@@ -19,7 +21,7 @@ class ArticleItem extends Component {
     return (
       <article
         className="article"
-        onClick={(e) => this.handleClick(e)}  
+        onClick={(e) => this.handleClick(e, article.team)}  
       >
         <div className="article-tn">
           <img

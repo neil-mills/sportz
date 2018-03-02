@@ -19,7 +19,6 @@ export function fetchArticles(sport) {
 }
 */
 export function saveUser(user) {
-  console.log('user',user)
   return ref.child(`users/${user.uid}`)
   .set(user)
   .then(() => user)
@@ -46,7 +45,6 @@ export function fetchArticles(sport) {
 export function fetchTeamArticles(team) {
   const teamSlug = slug(team).toLowerCase()
   const uri = `${baseUrl}/football/getteamnews/${teamSlug}/v1.0/`
-  console.log(uri)
   return axios(encodeURI(uri),{
     method: 'GET'
   }).then((response) => (response.data))
@@ -57,13 +55,13 @@ export function fetchAllUserTeamArticles(teams) {
   return axios.all(promises)
     .then((response) => {
       let teamArticles = [];
-      response.map((articles) => {
+      response.map((articles,index) => {
         articles.map((article) => {
+          article = {...article, team: teams[index]}
           teamArticles = [...teamArticles, article]
         })
        
       })
-      console.log('ALL TEAM ARTICLES', teamArticles)
       return teamArticles
     })
 }
@@ -87,17 +85,16 @@ export function formatArticles(articles) {
       imgsrc,
       link,
       shortdesc,
-      category: getArticleCategory(link)
+      category: getArticleCategory(link),
+      team: article.team ? article.team : null
     })
   })
   return formatted
 }
 
 export function getUserTeams(uid) {
-  console.log('get user teams=', uid)
   return ref.child(`/userTeams/${uid}/teams`).once('value')
   .then((snapshot) => {
-    console.log(snapshot)
     return snapshot.val()
   })
 }

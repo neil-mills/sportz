@@ -6,9 +6,13 @@ import { SportsList } from 'components'
 export default class SportsContainer extends Component {
   render() {
     return (
-      <SportsList
+      <div>
+        <h1>Sports</h1>
+        <SportsList
         sports={sports}
-      />
+        />
+      </div>
+      
     )
   }
 }

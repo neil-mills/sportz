@@ -19,8 +19,6 @@ class MainContainer extends Component {
       if (user) { 
         const userData = user.providerData[0]
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
-        
-
         this.props.authUser(user.uid) 
         this.props.getUserTeamsMiddleware()
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())

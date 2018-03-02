@@ -21,7 +21,8 @@ const Root = () => (
                 <Switch>
                     <Route exact path="/" component={HomeContainer} />
                     <Route path="/sport/:sportId" component={SportContainer} />
-                    <Route path="/article/:sportId/:articleId" component={ArticleContainer} />
+                    <Route exact path="/article/:sportId/:articleId" component={ArticleContainer} />
+                    <Route exact path="/article/:sportId/:teamId/:articleId" component={ArticleContainer} />
                     <Route path="/sports" component={SportsContainer} />
                     <Route path="/my-sports" component={MySportsContainer} />
                     <Route path="/account" component={AccountContainer} />

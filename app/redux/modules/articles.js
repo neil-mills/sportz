@@ -64,7 +64,8 @@ export default function articles(state = initialState, action) {
     case FETCHING_ARTICLES:
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
+        feed:[]  
       }
     case FETCHING_ARTICLES_FAILURE:
       return {

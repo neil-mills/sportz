@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ArticleItem } from 'components'
+import { withRouter } from 'react-router-dom'
 
 const Feed = (props) => {
   return (
@@ -23,10 +24,15 @@ Feed.defaultProps = {
   showLoader: true
 }
 
+Feed.defaultProps = {
+  isTeam: false
+}
+
 Feed.propTypes = {
   feed: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  showLoader: PropTypes.bool
+  showLoader: PropTypes.bool,
+  isTeam: PropTypes.bool.isRequired
 }
 
 export default Feed

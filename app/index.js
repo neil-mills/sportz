@@ -7,6 +7,7 @@ import { Header, Footer } from 'components'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import * as reducers from 'redux/modules'
+import 'components/App/style.scss'
 
 //need to use thunk middleware if using an action creator which returns a function rather than just an object
 const store = createStore(combineReducers(reducers), compose(

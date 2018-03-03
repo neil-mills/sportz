@@ -1,0 +1,14 @@
+@import '../../scss/variables/variables';
+@import '../../scss/partials/partials';
+
+#app {
+  display: block;
+  height: 100%;
+}
+.page-title {
+  background-color: $white;
+  padding: 30px 0;
+  margin: 0;
+  color: $blue;
+  line-height: 1;
+}

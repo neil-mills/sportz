@@ -1,0 +1,33 @@
+@import '../../scss/variables/variables';
+@import '../../scss/mixins/mixins';
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  &__inner {
+    background-color: $white;
+
+  border-top: 1px solid $grey;
+  }
+}
+
+.footer-nav-list {
+  @include reset-list;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+.footer-nav-item {
+  flex: 1;
+  display: flex;
+}
+.footer-nav-link {
+  padding: 10px;
+  flex: 1;
+  text-align: center;
+  display: block;
+  line-height: 1;
+  text-decoration: none;
+  color: $blue;
+}

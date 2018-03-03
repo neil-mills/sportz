@@ -17,7 +17,7 @@ class SportContainer extends Component {
     sport = sport.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     return (
       <div>
-        <h1>{sport}</h1>
+        <h1 className="page-title">{sport}</h1>
         <Feed
         isFetching={this.props.isFetching}
         feed={this.props.feed}  

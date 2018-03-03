@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import slug from 'slug'
+import './style.scss'
 
 class ArticleItem extends Component {
   constructor(props) {
@@ -28,14 +29,15 @@ class ArticleItem extends Component {
           <img
             src={article.imgsrc}
             alt={article.title}
-            width={220}
+            className="article-tn__img"
           />
         </div>
-        <h3 className="article__title">{article.title}</h3>
-        <p className="article-meta">
-          <span className="article-meta__posted"></span>
-          <span className="article-meta__category">{article.category}</span>
-        </p>
+        <div className="article__body">
+          <div className="article__content">
+            <h3 className="article__title">{article.title}</h3>
+            <p className="article-meta">{article.team !== null ? article.team : article.category}</p>
+          </div>
+        </div>
       </article>
     )
   }

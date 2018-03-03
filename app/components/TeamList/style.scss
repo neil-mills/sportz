@@ -1,0 +1,40 @@
+@import '../../scss/variables/variables';
+@import '../../scss/mixins/mixins';
+
+.team-menu {
+  margin: 0;
+  padding: 0;
+
+}
+.team-list {
+  @include reset-list;
+  margin: 0 0 30px;
+  padding: 0;
+  border-top: 1px solid $light-grey;
+}
+.team-item {
+  display: block;
+}
+.team-link {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 15px 15px 50px;
+  border-bottom: 1px solid $light-grey;
+  line-height: 1;
+  @include font-size-h4;
+  &__text {
+
+  }
+  &__icon {
+    width: 15px;
+    height: 15px;
+    display: none;
+  }
+  &[data-active='true'] {
+    font-family: $sky-text-medium;
+    color: $blue;
+    .team-link__icon {
+      display: block;
+    }
+  }
+}

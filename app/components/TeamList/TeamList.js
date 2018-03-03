@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import './style.scss'
+import '../../svg/tick.svg'
 
 export default class TeamList extends Component{
   constructor(props) {
@@ -27,7 +29,10 @@ export default class TeamList extends Component{
           onClick={(e) => this.handleClick(e, active, team.title)}
           data-active={active}
         >
-          {team.title}
+          <span className="team-link__label">{team.title}</span>
+          <svg className="team-link__icon" viewBox="0 0 60 60">
+            <use xlinkHref="#tick"></use>
+          </svg>
         </a>
       </li>
     )

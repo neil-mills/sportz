@@ -1,5 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import './style.scss'
 
 function SportsList(props) {
   function handleClick(e, slug) {

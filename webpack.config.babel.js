@@ -42,7 +42,7 @@ const config = {
         test: /\.(ttf|eot|woff|svg|woff2)$/,
         loader: 'file-loader',
         include: [ 
-          path.resolve(__dirname, 'src/fonts')
+          path.resolve(PATHS.src, 'fonts')
         ],
         options: {
           name: 'fonts/[name].[ext]'
@@ -50,7 +50,7 @@ const config = {
       }, {
         test: /\.svg$/,
         include: [ 
-          path.resolve(__dirname, 'src/svg')
+          path.resolve(PATHS.src, 'svg')
         ],
         use: [ 'svg-sprite-loader']
       }

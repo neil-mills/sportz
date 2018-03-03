@@ -27,9 +27,9 @@ class AccountContainer extends Component {
 
   render() {
     return this.props.isAuthed === true
-    ? <div>
-      <h1>Account</h1>
-      <p>Select teams</p>
+    ? <div className="content-block">
+      <h1 className="page-title">Account</h1>
+      <p className="no-tm">Select teams:</p>
       <TeamList
         teams={teamData}
         userTeams={this.props.teams}

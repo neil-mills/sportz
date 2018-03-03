@@ -38,14 +38,16 @@ class ArticleContainer extends Component {
    const { title, shortdesc, imgsrc } = this.props.info
     return this.props.isFetchingArticle
     ? <p>Fetching</p>
-    : <article>
-      <a className="back-link" onClick={this.handleBackClick}>Back</a>
-      <h1 className="article-title">{title}</h1>
-      <div className="article-image">
-        <img src={imgsrc} alt={title} />
-      </div>
-      <p>{shortdesc}</p>
+    : 
+    <div>
+      <article className="article" data-hero="true">
+         <h1 className="article__title">{title}</h1>
+        <div className="article-tn">
+          <img src={imgsrc} alt={title} className="article-tn__img" />
+        </div>
+        <p>{shortdesc}</p>
       </article>
+    </div>
   }
 }
 

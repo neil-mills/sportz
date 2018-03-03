@@ -9,6 +9,7 @@ import { firebaseAuth } from 'config/firebase'
 import { formatUserInfo } from 'helpers/utils'
 import { withRouter } from 'react-router-dom'
 
+
 const actionCreators = {...userActionCreators, ...userTeamsActionCreators}
 
 class MainContainer extends Component {
@@ -32,13 +33,15 @@ class MainContainer extends Component {
   render() {
     
     return (
-      <div className="container">
-        <Header />
-        <div className="inner-container">
-        {this.props.children}
+        <div>
+          <Header />
+          <main className="main" role="main">
+            <div className="main__inner container">
+              {this.props.children}
+            </div>
+          </main>
+          <Footer isAuthed={this.props.isAuthed} logout={this.props.logoutAndUnauth} />
         </div>
-        <Footer isAuthed={this.props.isAuthed} logout={this.props.logoutAndUnauth} />
-      </div>
     )
   }
 }

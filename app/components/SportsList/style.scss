@@ -1,0 +1,22 @@
+@import '../../scss/variables/variables';
+@import '../../scss/mixins/mixins';
+
+.sports-menu {
+  margin: 0;
+  padding: 0;
+}
+.sports-list {
+  @include reset-list;
+  margin: 0 15px 30px;
+  padding: 0;
+  border-top: 1px solid $light-grey;
+}
+.sports-list-item {
+  &__link {
+    display: block;
+    padding: 15px 15px 15px 50px;
+    border-bottom: 1px solid $light-grey;
+    line-height: 1;
+    @include font-size-h4;
+  }
+}

@@ -30,7 +30,7 @@ class MySportsContainer extends Component {
   render() {
     return (
     <div>
-      <h1>My Sports</h1>
+      <h1 className="page-title">My Sports</h1>
       { this.props.isAuthed === false &&
       <div>
         <p>Please login to personalise your my sports page</p>

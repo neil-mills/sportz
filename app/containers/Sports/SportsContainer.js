@@ -7,7 +7,7 @@ export default class SportsContainer extends Component {
   render() {
     return (
       <div>
-        <h1>Sports</h1>
+        <h1 className="page-title">Sports</h1>
         <SportsList
         sports={sports}
         />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Feed } from 'components'
+import lodash from 'lodash'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as articlesActionCreators from 'redux/modules/articles'
@@ -12,7 +13,8 @@ class SportContainer extends Component {
     //console.log(this.context.store.getState())
   }
   render() {
-    const sport = this.props.match.params.sportId
+    let sport = this.props.match.params.sportId.replace('-',' ')
+    sport = sport.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     return (
       <div>
         <h1>{sport}</h1>
@@ -20,6 +22,7 @@ class SportContainer extends Component {
         isFetching={this.props.isFetching}
         feed={this.props.feed}  
         error={this.props.error}
+        showLoader={true}
       />
       </div>
       

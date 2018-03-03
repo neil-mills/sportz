@@ -5,14 +5,16 @@ import { withRouter } from 'react-router-dom'
 
 const Feed = (props) => {
   return (
-    props.isFetching === true && props.showLoader
+    props.isFetching === true && props.showLoader === true
     ? <p>{'Fetching'}</p>
     : <div>
+      
       {
         props.feed.map((article, index) => (
           <ArticleItem
             key={index}
             article={article}
+            hero={index === 0 ? true : false}
           />
         ))
       }

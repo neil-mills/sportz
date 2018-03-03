@@ -19,6 +19,7 @@ class HomeContainer extends Component {
         feed={this.props.feed}
         isFetching={this.props.isFetching}
         error={this.props.error}
+        showLoader={true}
       />
       </div>
     )

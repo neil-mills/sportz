@@ -21,6 +21,7 @@ class ArticleItem extends Component {
     return (
       <article
         className="article"
+        data-hero={this.props.hero}
         onClick={(e) => this.handleClick(e, article.team)}  
       >
         <div className="article-tn">

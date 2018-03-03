@@ -28,6 +28,7 @@
     "cross-env": "^5.0.1",
     "firebase": "^4.10.0",
     "fs": "0.0.1-security",
+    "lodash": "^4.17.5",
     "morgan": "^1.6.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

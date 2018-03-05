@@ -33,7 +33,7 @@ class MySportsContainer extends Component {
       <h1 className="page-title">My Sports</h1>
       { this.props.isAuthed === false &&
       <div>
-        <p>Please login to personalise your my sports page</p>
+        <h3>Please login to personalise your my sports page</h3>
         <Link className="button" to="/account">Login</Link>
       </div>
       }
@@ -52,7 +52,7 @@ class MySportsContainer extends Component {
       }
       { this.props.isAuthed === true && !this.props.userTeams.length && this.props.fetchingUserTeams === false  &&
         <div>
-          <p>Please personalise your news feed</p>
+          <h3>Please personalise your news feed</h3>
           <Link className="button" to="/account">Personalise News</Link>
         </div>
       }  

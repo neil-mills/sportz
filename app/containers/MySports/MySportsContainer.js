@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as articlesActionCreators from 'redux/modules/articles'
 import * as usersActionCreators from 'redux/modules/users'
 import * as userTeamsActionCreators from 'redux/modules/userTeams'
-import { Feed } from 'components'
+import { Feed, Loader } from 'components'
 import { Link } from 'react-router-dom'
 
 const actionCreators = { ...articlesActionCreators, ...usersActionCreators, ...userTeamsActionCreators }
@@ -38,7 +38,7 @@ class MySportsContainer extends Component {
       </div>
       }
       { this.props.isFetchingUserTeams === true && this.props.isFetchingFeed === true &&
-        <p>Fetching</p>
+        <Loader />
       }
       { this.props.isAuthed === true && this.props.userTeams.length > 0 &&
  

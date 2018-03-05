@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ArticleItem } from 'components'
+import { ArticleItem, Loader } from 'components'
 import { withRouter } from 'react-router-dom'
 import './style.scss'
 
 const Feed = (props) => {
   return (
     props.isFetching === true && props.showLoader === true
-    ? <p>{'Fetching'}</p>
+    ? <Loader />
     : <div className="feed">
       
       {

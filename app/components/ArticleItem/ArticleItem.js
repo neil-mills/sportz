@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import slug from 'slug'
 import './style.scss'
+import { formatTitle } from 'helpers/utils'
 
 class ArticleItem extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class ArticleItem extends Component {
         <div className="article__body">
           <div className="article__content">
             <h3 className="article__title">{article.title}</h3>
-            <p className="article-meta">{article.team !== null ? article.team : article.category}</p>
+            <p className="article-meta">{article.team !== null ? article.team : formatTitle(article.category)}</p>
           </div>
         </div>
       </article>

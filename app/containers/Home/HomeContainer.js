@@ -14,7 +14,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-      <h1 className="page-title">Home</h1>
+      <h1 className="page-title">Football</h1>
       <Feed
         feed={this.props.feed}
         isFetching={this.props.isFetching}

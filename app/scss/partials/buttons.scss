@@ -1,13 +1,17 @@
 @import '../variables/variables';
+@import '../mixins/mixins';
 .button {
     outline: none;
     border: none;
     -webkit-appearance: none;
-    padding: 0;
+    padding: 15px;
+    border-radius: 5px;
+    @include font-size-h4;
+    font-family: $sky-text-regular;
     margin: 0;
-    font-size: 0;
-    color: transparent;
-    background-color: transparent;
+    color: $white;
+    background-color: $blue;
+    display: inline-block;
     cursor: pointer;
     &__icon {
         width: 100%;

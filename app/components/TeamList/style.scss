@@ -18,23 +18,29 @@
 .team-link {
   display: flex;
   justify-content: space-between;
-  padding: 15px 15px 15px 50px;
+  align-items: center;
+  padding: 15px;
   border-bottom: 1px solid $light-grey;
   line-height: 1;
   @include font-size-h4;
-  &__text {
-
+  cursor: pointer;
+  &__label {
+    display: block;
+  }
+  &__badge {
+    width: 50px;
+    height: 50px;
   }
   &__icon {
     width: 15px;
     height: 15px;
-    display: none;
+    opacity: 0;
   }
   &[data-active='true'] {
     font-family: $sky-text-medium;
     color: $blue;
     .team-link__icon {
-      display: block;
+      opacity: 1;
     }
   }
 }

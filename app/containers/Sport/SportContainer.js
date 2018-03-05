@@ -5,6 +5,7 @@ import lodash from 'lodash'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as articlesActionCreators from 'redux/modules/articles'
+import { formatTitle } from 'helpers/utils'
 
 class SportContainer extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class SportContainer extends Component {
   }
   render() {
     let sport = this.props.match.params.sportId.replace('-',' ')
-    sport = sport.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    sport =formatTitle(sport)
     return (
       <div>
         <h1 className="page-title">{sport}</h1>

@@ -27,8 +27,9 @@ class AccountContainer extends Component {
 
   render() {
     return this.props.isAuthed === true
-    ? <div className="content-block">
+    ? <div>
       <h1 className="page-title">Account</h1>
+      <div className="content-block">
       <p className="no-tm">Select teams:</p>
       <TeamList
         teams={teamData}
@@ -37,7 +38,13 @@ class AccountContainer extends Component {
         removeUserTeam={this.props.removeUserTeamMiddleware}
       />
     </div>
-    : <FacebookLogin handleAuth={this.handleAuth} />
+    </div>
+    : <div className="content-block">
+        <div className="login">
+          <h3>Login to personalise your My Sports news feed for the teams you support</h3>
+          <FacebookLogin handleAuth={this.handleAuth} />
+        </div>
+    </div>
   }
 }
 

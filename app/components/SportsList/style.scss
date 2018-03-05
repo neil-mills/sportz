@@ -14,7 +14,7 @@
 .sports-list-item {
   &__link {
     display: block;
-    padding: 15px 15px 15px 50px;
+    padding: 15px;
     border-bottom: 1px solid $light-grey;
     line-height: 1;
     @include font-size-h4;
